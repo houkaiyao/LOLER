@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Loler</title>
+    <!-- 字体和弹窗库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
+            background-color: #ffffff;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10vh;
+        }
+
+        .logo {
+            font-size: 80px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 50px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px 24px;
+            font-size: 22px;
+            border: 1px solid #ccc;
+            border-radius: 32px;
+            outline: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">
+            <span style="color: #4285F4;">L</span>
+            <span style="color: #EA4335;">o</span>
+            <span style="color: #4285F4;">L</span>
+            <span style="color: #34A853;">e</span>
+            <span style="color: #FBBC05;">r</span>
+        </h1>
+
+        <form action="/search" method="post" autocomplete="off">
+            <input type="text" name="identifier" placeholder="请输入QQ或微信号" autofocus required>
+        </form>
+    </div>
+
+    <script>
+        // 输入框自动聚焦 + 回车校验提交
+        const input = document.querySelector('input[name="identifier"]');
+        input.focus();
+        input.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                const value = input.value.trim();
+                const qqRegex = /^[1-9][0-9]{4,}$/;
+                const wechatRegex = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/;
+
+                if (!(qqRegex.test(value) || wechatRegex.test(value))) {
+                    alert('请输入有效的QQ或微信号');
+                    event.preventDefault();
+                }
+            }
+        });
+
+        // 查询结果提示（仅在有 result 时触发）
+        {% if result %}
+        Swal.fire({
+        icon: 'info',
+        title: '查询结果',
+        html: "{{ result }}",  // 使用 html 来渲染带有 HTML 标签的 result
+        confirmButtonColor: '#3085d6'
+        });
+        {% endif %}
+    </script>
+</body>
+</html>

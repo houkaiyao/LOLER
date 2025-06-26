@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>管理后台 - Loler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
+            background-color: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10vh;
+        }
+
+        .logo {
+            font-size: 60px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+        }
+
+        .logo span {
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            gap: 12px;
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            width: 320px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .btn-mark {
+            background-color: #34A853;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #EA4335;
+            color: white;
+        }
+
+        .back-link {
+            margin-top: 40px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #4285F4;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <span style="color: #4285F4;">L</span>
+        <span style="color: #EA4335;">o</span>
+        <span style="color: #4285F4;">L</span>
+        <span style="color: #34A853;">e</span>
+        <span style="color: #FBBC05;">r</span>
+    </div>
+
+    <form method="POST" action="/admin/operate">
+        <input type="text" name="identifier" placeholder="输入QQ或微信号" required>
+        <button type="submit" name="action" value="mark" class="btn-mark">标记</button>
+        <button type="submit" name="action" value="delete" class="btn-delete">删除</button>
+    </form>
+</div>
+
+</body>
+</html>
